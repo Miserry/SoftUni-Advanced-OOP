@@ -14,16 +14,3 @@ for i in range(n):
 
 stack.reverse()
 print(*stack, sep = ', ')
-
-"""
-9
-1 97
-2
-1 20
-2
-1 26
-1 20
-3
-1 91
-4
-"""

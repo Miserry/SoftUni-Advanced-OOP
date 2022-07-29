@@ -8,3 +8,5 @@ for index in range(len(n)-1,-1,-1):
 
 for i in range(len(line)):
     print(line[i], end = ' ')
+
+#Wrong in judge.
