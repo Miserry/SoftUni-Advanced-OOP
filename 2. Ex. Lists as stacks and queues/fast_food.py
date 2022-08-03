@@ -7,7 +7,7 @@ food_amount = int(input())
 line = deque()
 orders = input()
 
-orders = orders.split(" ")
+orders = orders.split()
 for i in range(len(orders)):
     line.append(int(orders[i]))
 
