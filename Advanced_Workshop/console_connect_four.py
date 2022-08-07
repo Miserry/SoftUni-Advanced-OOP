@@ -1,5 +1,4 @@
 # Place player marker. Check if column available.
-
 # TODO define winning conditions
 
 class InvalidColumnError(Exception):
@@ -17,6 +16,16 @@ def validate_col_choice(selected_col, max_col_index):
         raise InvalidColumnError
 
 
+def place_player_choice(ma, selected_col_index, player_num):
+    #TODO
+    rows_count = len(ma)
+    for row_index in range(rows_count - 1, -1, -1):
+        current_element =  ma[row_index][selected_col_index]
+        if current_element == 0:
+            ma[row_index][selected_col_index] = player_num
+            return
+
+
 rows = 6
 cols = 7
 
@@ -32,6 +41,8 @@ while True:
         # Read column choice from input
         col_num = int(input(f"Player {player_num}, choose a column: ")) - 1
         validate_col_choice(col_num, cols - 1)
+        place_player_choice(matrix, col_num, player_num)
+        print_matrix(matrix)
     except InvalidColumnError:
         print(f"This column is not valid, select a valid one: ")
         continue
