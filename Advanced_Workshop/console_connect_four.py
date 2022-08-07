@@ -1,8 +1,12 @@
-# Place player marker. Check if column available.
 # TODO define winning conditions
 
 class InvalidColumnError(Exception):
     pass
+
+
+class FullColumnError(Exception):
+    pass
+
 
 # print matrix
 def print_matrix(ma):
@@ -17,13 +21,19 @@ def validate_col_choice(selected_col, max_col_index):
 
 
 def place_player_choice(ma, selected_col_index, player_num):
-    #TODO
+    # Place player marker. Check if column available.
     rows_count = len(ma)
     for row_index in range(rows_count - 1, -1, -1):
         current_element =  ma[row_index][selected_col_index]
         if current_element == 0:
             ma[row_index][selected_col_index] = player_num
-            return
+            return row_index, selected_col_index
+    raise FullColumnError
+
+def is_winner(ma, row, col, player_num, slots_count = 4):
+    is_right = all[ma[row][col+index] == player_num for index in range(slots_count)]
+    is_left = all[ma[row][col-index] == player_num for index in range(slots_count)]
+
 
 
 rows = 6
@@ -41,13 +51,21 @@ while True:
         # Read column choice from input
         col_num = int(input(f"Player {player_num}, choose a column: ")) - 1
         validate_col_choice(col_num, cols - 1)
-        place_player_choice(matrix, col_num, player_num)
+        row, col = place_player_choice(matrix, col_num, player_num)
+        if is_winner(matrix, row, col, player_num):
+            print(f"Player {player_num} has won the game!")
+            break
+        elif board_full():
+            break
         print_matrix(matrix)
     except InvalidColumnError:
         print(f"This column is not valid, select a valid one: ")
         continue
     except ValueError:
         print(f"Please select a valid digit.")
+        continue
+    except FullColumnError:
+        print(f"The column is full, please choose another one.")
         continue
     player_num += 1
 
