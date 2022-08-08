@@ -51,7 +51,8 @@ def is_left_diagonal(ma, row, col, player_num, slots_count):
 
 def is_up(ma, row, col, player_num, slots_count):
     up_count = [is_player_num(ma, row - index, col, player_num) for index in range(slots_count)].count(True)
-    return up_count > slots_count
+    down_count = [is_player_num(ma, row + index, col, player_num) for index in range(slots_count)].count(True)
+    return (up_count + down_count) > slots_count
 
 
 def is_winner(ma, row, col, player_num, slots_count = 4):
