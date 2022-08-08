@@ -1,5 +1,3 @@
-# TODO define winning conditions
-
 class InvalidColumnError(Exception):
     pass
 
@@ -110,11 +108,3 @@ while True:
         print(f"The column is full, please choose another one.")
         continue
     player_num += 1
-
-
-
-
-
-
-
-
