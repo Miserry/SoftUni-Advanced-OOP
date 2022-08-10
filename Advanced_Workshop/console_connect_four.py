@@ -108,11 +108,3 @@ while True:
         print(f"The column is full, please choose another one.")
         continue
     player_num += 1
-
-
-
-
-
-
-
-
