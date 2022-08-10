@@ -1,5 +1,3 @@
-# TODO define winning conditions
-
 class InvalidColumnError(Exception):
     pass
 
